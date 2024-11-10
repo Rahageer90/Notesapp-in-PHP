@@ -37,9 +37,10 @@ class EditNote {
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $title = trim($_POST['title']);
                 $content = trim($_POST['content']);
+                $private = isset($_POST['private']) ? 1 : 0;
 
                 if (!empty($title) && !empty($content)) {
-                    $noteModel->updateNote($noteId, $title, $content);
+                    $noteModel->updateNote($noteId, $title, $content, $private);
                     header('Location: /dashboard');
                     exit;
                 } else {

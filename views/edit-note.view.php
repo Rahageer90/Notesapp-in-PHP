@@ -19,6 +19,11 @@
                 <textarea id="content" name="content" rows="6" required
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"><?= htmlspecialchars($note['content']) ?></textarea>
             </div>
+            <div class="flex items-center">
+                <input type="checkbox" id="private" name="private" value="1" 
+                    class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+                <label for="private" class="ml-2 block text-sm text-gray-800"> Set as private</label>
+            </div>
             
             <div class="flex justify-between">
                 <button type="submit"

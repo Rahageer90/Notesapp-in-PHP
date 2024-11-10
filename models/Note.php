@@ -18,20 +18,22 @@ class Note{
 
         return $stmt->fetch();
     }
-    public function createNote($userId, $title,$content){
-        $stmt = $this->pdo->prepare('INSERT INTO notes (user_id, title, content, created_at ) VALUES (:user_id, :title, :content, NOW())');
+    public function createNote($userId, $title,$content,$private = 0){
+        $stmt = $this->pdo->prepare('INSERT INTO notes (user_id, title, content, private, created_at) VALUES (:user_id, :title, :content, :private, NOW())');
         $stmt->execute([
             'user_id'=> $userId,
             'title'=> $title,
-            'content'=> $content
+            'content'=> $content,
+            'private'=> $private
         ]);
     }
-    public function updateNote($noteId, $title, $content){
-        $stmt = $this->pdo->prepare('UPDATE notes SET title = :title, content= :content WHERE id = :id');
+    public function updateNote($noteId, $title, $content, $private = 0){
+        $stmt = $this->pdo->prepare('UPDATE notes SET title = :title, content= :content, private = :private WHERE id = :id');
         $stmt->execute([
             'id' => $noteId,
             'title'=> $title,
-            'content'=> $content
+            'content'=> $content,
+            'private'=> $private
         ]);
     }
     public function deleteNote($noteId){
@@ -47,6 +49,7 @@ class Note{
                 SELECT notes.title, notes.content, notes.created_at, users.email
                 FROM notes
                 JOIN users ON notes.user_id = users.id
+                WHERE notes.private = 0
             ');
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);

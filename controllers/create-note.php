@@ -27,10 +27,11 @@ class createNote
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && $userId){
             $title = trim($_POST['title']);
             $content = trim($_POST['content']);
+            $private = isset($_POST['private']) ? 1 : 0;
 
             if (!empty($title) && !empty($content)){
                 $noteModel = new Note($this->pdo);
-                $noteModel->createNote($userId,$title, $content);
+                $noteModel->createNote($userId,$title, $content, $private);
                 header('Location: /dashboard');
                 exit;
             } else{$error = 'Both title and content are required';
