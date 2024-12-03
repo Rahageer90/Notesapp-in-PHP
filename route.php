@@ -22,6 +22,8 @@ $router->post('/delete-note','controllers/delete-note.php');
 $router->get('/public-notes', 'controllers/public-notes.php');
 $router->get('/todo-list', 'controllers/todo-list.php');
 $router->post('/todo-list', 'controllers/todo-list.php');
+$router->post('/delete-notes', 'controllers/delete-notes.php');
+
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $method = $_SERVER['REQUEST_METHOD'];
