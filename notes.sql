@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2024 at 05:31 PM
+-- Generation Time: Dec 03, 2024 at 10:54 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -32,16 +32,17 @@ CREATE TABLE `notes` (
   `user_id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `content` text DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `private` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `notes`
 --
 
-INSERT INTO `notes` (`id`, `user_id`, `title`, `content`, `created_at`) VALUES
-(4, 2, 'Hello World', 'Hello WOrld', '2024-11-01 19:24:03'),
-(5, 1, 'Testing after completion', 'Let\'s see if everything works fine', '2024-11-05 16:19:41');
+INSERT INTO `notes` (`id`, `user_id`, `title`, `content`, `created_at`, `private`) VALUES
+(4, 2, 'Hello World', 'Hello WOrld', '2024-11-01 19:24:03', 0),
+(7, 1, 'Hello World', 'HELLO EVERYONE', '2024-12-03 08:13:38', 0);
 
 -- --------------------------------------------------------
 
@@ -111,13 +112,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `notes`
 --
 ALTER TABLE `notes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `todos`
 --
 ALTER TABLE `todos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
