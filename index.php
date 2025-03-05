@@ -7,6 +7,3 @@ $dbConfig = $config['database'];
 $db = new Database($dbConfig);
 require 'route.php';
 
-echo "<pre>";
-print_r(scandir(__DIR__));
-echo "</pre>";
