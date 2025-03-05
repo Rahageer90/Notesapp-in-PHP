@@ -4,12 +4,14 @@ class Database
 {
     public $connection;
 
-    public function __construct($config, $username = 'root', $password = '')
+    public function __construct($config)
     {
         $host = $config['host'];
         $dbname = $config['dbname'];
         $charset = $config['charset'];
         $port = $config['port'];
+        $username = $config['user'];       // Use the username from config
+        $password = $config['password'];  // Use the password from config
 
         $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset;port=$port";
 
