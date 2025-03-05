@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__.'/../database.php';
-require_once __DIR__.'/../models/user.php';
+require_once __DIR__.'/../models/User.php';
 class RegisterController{
     private $pdo;
     public function __construct(){
