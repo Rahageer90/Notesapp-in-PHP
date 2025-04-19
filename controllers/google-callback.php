@@ -1,7 +1,10 @@
 <?php
+
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../database.php';
 require_once __DIR__ . '/../models/User.php';
+
+use Google_Service_Oauth2;
 
 session_start();
 
