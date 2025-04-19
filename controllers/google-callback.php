@@ -4,24 +4,30 @@ require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../database.php';
 require_once __DIR__ . '/../models/User.php';
 
-use Google_Service_Oauth2;
+use Google\Client as GoogleClient;
+use Google\Service\Oauth2;
 
 session_start();
 
-$client = new Google_Client();
-$client->setClientId('YOUR_GOOGLE_CLIENT_ID');
-$client->setClientSecret('YOUR_GOOGLE_CLIENT_SECRET');
+// Initialize Google Client
+$client = new GoogleClient();
+$client->setClientId('722234426503-ckp8udm4am8dlj9svb876b4gtld7l1f7.apps.googleusercontent.com');
+$client->setClientSecret('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');
 $client->setRedirectUri('https://your-app.onrender.com/google-callback');
+$client->addScope('email');
+$client->addScope('profile');
 
+// Handle the callback
 if (isset($_GET['code'])) {
     $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
 
     if (!isset($token['error'])) {
         $client->setAccessToken($token['access_token']);
-        $google_oauth = new Google_Service_Oauth2($client);
-        $google_account_info = $google_oauth->userinfo->get();
 
-        $email = $google_account_info->email;
+        $googleOAuthService = new Oauth2($client);
+        $googleUser = $googleOAuthService->userinfo->get();
+
+        $email = $googleUser->getEmail();
 
         // Initialize DB
         $config = require __DIR__ . '/../config.php';
@@ -32,8 +38,8 @@ if (isset($_GET['code'])) {
         $user = $userModel->findUserByEmail($email);
 
         if (!$user) {
-            // Auto-register if user doesn't exist
-            $userId = $userModel->createUser($email, null); // Password null for Google users
+            // Auto-register the user
+            $userId = $userModel->createUser($email, null); // Google users don't have password
         } else {
             $userId = $user['id'];
         }
@@ -44,5 +50,6 @@ if (isset($_GET['code'])) {
     }
 }
 
+// If something goes wrong
 header('Location: /login?error=Google login failed');
 exit;
