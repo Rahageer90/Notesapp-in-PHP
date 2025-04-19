@@ -2,7 +2,6 @@
 
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
-        <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company Logo">
         <h2 class="mt-6 text-center text-2xl font-bold tracking-tight text-gray-900">Login to Notes Application</h2>
     </div>
 
