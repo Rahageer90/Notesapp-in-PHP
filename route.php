@@ -10,8 +10,9 @@ $router = new Router();
 $router->get('/', 'controllers/index.php');
 $router->get('/register', 'controllers/register.php');
 $router->post('/register', 'controllers/register.php');
-$router->get('/login', 'controllers/login.php');
-$router->post('/login', 'controllers/login.php');
+$router->get('/login', 'controllers/google-login.php');
+$router->get('/google-callback', 'controllers/google-callback.php');
+
 $router->get('/dashboard', 'controllers/dashboard.php');
 $router->get('/create-note', 'controllers/create-note.php');
 $router->post('/create-note', 'controllers/create-note.php');

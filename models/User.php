@@ -16,13 +16,15 @@ class User
         $stmt->execute(['email' => $email]);
         return $stmt->fetch(); 
     }
-    public function createUser($email,$password){
-        $stmt = $this->pdo->prepare('insert into users (email,password) values(:email, :password)');
+    public function createUser($email, $password = null)
+    {
+        $stmt = $this->pdo->prepare('INSERT INTO users (email, password) VALUES (:email, :password)');
         $stmt->execute([
-            'email'=> $email,
-            'password'=> $password
+            'email' => $email,
+            'password' => $password,
         ]);
+        return $this->pdo->lastInsertId();
     }
-
+    
     
 }
