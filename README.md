@@ -35,6 +35,67 @@ A full-featured notes and todo list application built with PHP and MySQL, follow
 ## Installation
 
 1. Clone the repository:
-2. Set up the database using the provided schema.
-3. Configure database credentials in `config.php`.
-4. Start a local server and navigate to the project directory.
+```sh
+git clone <repository-url>
+cd notesapp-in-php
+```
+
+2. Install dependencies:
+```sh
+composer install
+```
+
+3. Configure environment variables:
+   - Copy `.env.example` to `.env`
+   - Update database credentials
+   - Add Google OAuth credentials
+
+4. Set up the database:
+```sql
+CREATE DATABASE notesapp;
+USE notesapp;
+// Import schema from notes.sql
+```
+
+5. Start the application:
+```sh
+php -S localhost:8000
+```
+
+## Docker Deployment
+
+1. Build the Docker image:
+```sh
+docker build -t notesapp .
+```
+
+2. Run the container:
+```sh
+docker run -p 80:80 notesapp
+```
+
+## Project Structure
+```
+├── controllers/    # Application controllers
+├── Core/          # Core framework files
+├── models/        # Data models
+├── views/         # View templates
+├── config.php     # Configuration
+├── database.php   # Database connection
+└── route.php      # URL routing
+```
+
+## Environment Requirements
+- PHP 8.1+
+- MySQL 5.7+
+- Apache/Nginx
+- Composer
+
+## Live Demo
+Visit [notesapp-in-php.onrender.com](https://notesapp-in-php.onrender.com) to see the application in action.
+
+## License
+MIT License
+
+## Author
+[Your Name]
