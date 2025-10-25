@@ -98,4 +98,4 @@ Visit [notesapp-in-php.onrender.com](https://notesapp-in-php.onrender.com) to se
 MIT License
 
 ## Author
-[Your Name]
+Rahageer Saadman Islam
